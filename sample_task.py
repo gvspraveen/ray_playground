@@ -1,6 +1,5 @@
 import ray
 import time
-import asyncio
 import random
 
 ray.init()
@@ -22,18 +21,19 @@ class Counter(object):
 # results = [ray.get(c.incr.remote()) for c in counters]
 # print(results)
 
-
 names=["We","I","They","He","She","Jack","Jim"]	
 verbs=["was","is","are","were"]
 nouns=["playing a game","watching television","talking","dancing","speaking"]
 @ray.remote
-def generate_sentences():
-   # Feel free to change the number to make the script run longer or shorter
-   for i in range(100):
-     a=(random.choice(names))
-     b=(random.choice(verbs))
-     c=(random.choice(nouns))
-     return a+" ",b+" "+c
-     time.sleep(1)
-sentences = [generate_sentences.remote() for _ in range(15)]
-print(ray.get(sentences))
+def generate_sentences(num=1, delay=1):
+    for _ in range(num):
+        a=(random.choice(names))
+        b=(random.choice(verbs))
+        c=(random.choice(nouns))
+        return a+" ",b+" "+c
+        time.sleep(delay)
+        
+if __name__ == "__main__":
+    sentences = [generate_sentences.remote(1, 5) for _ in range(100)]
+    # print(ray.get(sentences))
+
