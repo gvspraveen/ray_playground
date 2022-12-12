@@ -1,8 +1,9 @@
 entrypoint: python sample_job.py
 compute_config: praveeng-compute-config
 cluster_env: praveeng-test-workspace
-runtime_env:
-  working_dir: https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip
+runtime_env: 
+   working_dir: .
+   upload_path: s3://tchordia-test-re/runtime-env
 # runtime_env:
 #   working_dir: https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip
 max_retries: 1

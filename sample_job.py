@@ -13,8 +13,8 @@ def generate_sentences(num=1, delay=1):
         a=(random.choice(names))
         b=(random.choice(verbs))
         c=(random.choice(nouns))
-        return a+" ",b+" "+c
+        return a+" ",b+" "+c        
         time.sleep(delay)
 
-sentences = [generate_sentences.remote(1, 5) for _ in range(100)]
+sentences = [generate_sentences.remote(2, 5) for _ in range(100)]
 # print(ray.get(sentences))
