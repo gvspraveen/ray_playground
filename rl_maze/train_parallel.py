@@ -18,17 +18,25 @@ def train_maze_policy_parallel(env, num_episodes=100, num_actors=4):
     actors = [SimulationActor.remote(env) for _ in range(num_actors)]
     policy_ref = ray.put(policy)
 
-    for i in range(num_episodes):
+    for _ in range(num_episodes):
         experiences = [sim.rollout.remote(policy_ref) for sim in actors]
-
         while len(experiences) > 0:
             finished, experiences = ray.wait(experiences)
             for xp in ray.get(finished):
-                policy.update_policy(xp) 
-        
-        cost = evaluate_maze_policy(env, policy)
-        print(f"{i} episode: "
-        f"total cost = {cost}.")
+                policy.update_policy(xp)         
+        # cost = evaluate_maze_policy(env, policy)
+        # print(f"{i} episode: "
+        # f"total cost = {cost}.")
+    
+    return policy
 
-env = Environment(obs_space=(3,3))
-train_maze_policy_parallel(env)
+# Parameters to tune
+maze_dimensions=(5,5)
+env = Environment(maze_dimensions)
+num_actors = 4 # Each actor is unit of parallelization in the implementation
+episodes_per_actor = 100
+
+# Start training
+policy = train_maze_policy_parallel(env, num_episodes=episodes_per_actor, num_actors=num_actors)
+# Evaluate
+evaluate_maze_policy(env, policy, num_episodes=episodes_per_actor)

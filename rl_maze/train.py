@@ -12,7 +12,7 @@ def train_maze_policy(env, num_episodes=100):
     
     return policy
 
-def evaluate_maze_policy(env, policy, num_episodes=50):
+def evaluate_maze_policy(env, policy, num_episodes=100):
     sim = Simulation(env)
     cost = 0
 
@@ -20,7 +20,11 @@ def evaluate_maze_policy(env, policy, num_episodes=50):
         experiences = sim.rollout(policy)
         cost += len(experiences)
 
-    # print(f"{cost / num_episodes} steps on average "
-    #     f"for a total of {num_episodes} episodes.")
+    print(f"{cost / num_episodes} steps on average "
+        f"for a total of {num_episodes} episodes.")
 
     return cost / num_episodes
+
+# env = Environment(obs_space=(3,3))
+# policy = train_maze_policy(env)
+# evaluate_maze_policy(env, policy)
