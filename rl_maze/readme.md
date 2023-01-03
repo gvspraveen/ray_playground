@@ -1,0 +1,1 @@
+## A simple distributed maze app using Reinforcement learning inspired by [Learning Ray tutorial](https://github.com/maxpumperla/learning_ray/blob/main/notebooks/ch_03_core_app.ipynb)
