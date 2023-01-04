@@ -2,24 +2,14 @@ import ray
 import subprocess
 import time
 import re
-ray.init()
 
-
+ray.init("auto")
 
 
 # zen_of_python = subprocess.check_output(["python", "-c", "import this"])
 # corpus = zen_of_python.split()
 
-text_file = open("sea_change.txt", "r")
-data = text_file.read()
-corpus = re.sub(r'[^a-zA-Z]', ' ', data)
-corpus = corpus.split()
 
-
-chunk = len(corpus) // num_partitions
-corpus_chunks = [
-    corpus[i * chunk: (i + 1) * chunk] for i in range(num_partitions)
-]
 
 @ray.remote
 def map_chunks(corpus_chunk, num_partitions, delay=0.0):
@@ -74,5 +64,15 @@ def perform_map_reduce(num_partitions, delay=0.0):
 
 #  NUM of PARTITIONS == NUM of MAP tasks
 num_partitions = 5
-mapper_delay = 0.01
+mapper_delay = 0.1
+text_file = open("sea_change.txt", "r")
+data = text_file.read()
+corpus = re.sub(r'[^a-zA-Z]', ' ', data)
+corpus = corpus.split()
+
+
+chunk = len(corpus) // num_partitions
+corpus_chunks = [
+    corpus[i * chunk: (i + 1) * chunk] for i in range(num_partitions)
+]
 perform_map_reduce(num_partitions, delay=mapper_delay)
