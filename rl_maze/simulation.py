@@ -5,7 +5,7 @@ class Simulation:
     def __init__(self, env):
         self.env = env
 
-    def rollout(self, policy, render=False, explore=True, epsilon=0.1):
+    def rollout(self, policy, render=False, explore=True, epsilon=0.1, delay=0.0):
         experiences = []
         state = self.env.reset()
         done = False
@@ -18,6 +18,7 @@ class Simulation:
                 time.sleep(0.01)
                 self.env.render()
 
+        time.sleep(delay)
         return experiences
 
 
