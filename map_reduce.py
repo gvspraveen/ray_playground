@@ -5,9 +5,7 @@ import re
 ray.init()
 
 
-#  NUM of PARTITIONS == NUM of MAP tasks
-num_partitions = 5
-mapper_delay = 0.0
+
 
 # zen_of_python = subprocess.check_output(["python", "-c", "import this"])
 # corpus = zen_of_python.split()
@@ -49,7 +47,7 @@ def reduce_results(*results):
     return reduce_results
 
 
-def perform_map_reduce():
+def perform_map_reduce(num_partitions, delay=0.0):
     reducer_outputs = []
 
     map_results = [
@@ -74,5 +72,7 @@ def perform_map_reduce():
         print(f"{count[0]}: {count[1]}")
         # print(f"{count[0].decode('utf-8')}: {count[1]}")
 
-
-perform_map_reduce()
+#  NUM of PARTITIONS == NUM of MAP tasks
+num_partitions = 5
+mapper_delay = 0.01
+perform_map_reduce(num_partitions, delay=mapper_delay)
