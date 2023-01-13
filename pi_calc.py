@@ -4,7 +4,6 @@ import time
 import math
 from fractions import Fraction
 
-ray.init()
 
 """
 Distributed PI calculator using Montecarlo simulation. https://www.geeksforgeeks.org/estimating-value-pi-using-monte-carlo/
@@ -28,8 +27,8 @@ pi = 4 * (Num of samples inside circle)/(num of samples inside square grid)
 """
 
 @ray.remote
-def pi4_actor(num_samples, delay=0.0):
-    """pi4_actor runs num_samples experiments, and returns the
+def pi4_task(num_samples, delay=0.0):
+    """Runs num_samples experiments, and returns the
     fraction of time it was inside the circle.
     """
     in_count = 0
@@ -46,7 +45,7 @@ NUM_ACTORS = 20
 
 # Testing single actor
 # start = time.time()
-# future = pi4_actor.remote(SAMPLES_PER_ACTOR)
+# future = pi4_task.remote(SAMPLES_PER_ACTOR)
 # pi4 = ray.get(future)
 # end = time.time()
 # dur = end - start
@@ -54,11 +53,13 @@ NUM_ACTORS = 20
 # pi = pi4 * 4
 # print(f'{float(pi)} is off by {abs(pi-math.pi)/pi*100}%')
 
+
+ray.init()
 start = time.time()
 print(f'Doing {NUM_ACTORS} actors')
 results = []
 for _ in range(NUM_ACTORS):
-    results.append(pi4_actor.remote(SAMPLES_PER_ACTOR))
+    results.append(pi4_task.remote(SAMPLES_PER_ACTOR, DELAY_PER_ACTOR))
 output = ray.get(results)
 pi = sum(output)*4/len(output)
 end = time.time()
