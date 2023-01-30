@@ -1,0 +1,9 @@
+entrypoint: python pi_calc.py
+compute_config: praveeng-workspace-v2-stack_cluster_compute_00c8e2c4-19db-47e4-956e-2d1790dd7e3b
+cluster_env: default_cluster_env_2.2.0_py39:1
+runtime_env: 
+   working_dir: .
+   upload_path: s3://praveeng-test-bucket
+# runtime_env:
+#   working_dir: https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip
+max_retries: 1

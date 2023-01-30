@@ -41,19 +41,8 @@ def pi4_task(num_samples, delay=0.0):
     time.sleep(delay)
 
 SAMPLES_PER_ACTOR = 10000
-DELAY_PER_ACTOR = 0.1
+DELAY_PER_ACTOR = 1
 NUM_ACTORS = 20
-
-# Testing single actor
-# start = time.time()
-# future = pi4_task.remote(SAMPLES_PER_ACTOR)
-# pi4 = ray.get(future)
-# end = time.time()
-# dur = end - start
-# print(f'Running {SAMPLES_PER_ACTOR} tests took {dur} seconds')
-# pi = pi4 * 4
-# print(f'{float(pi)} is off by {abs(pi-math.pi)/pi*100}%')
-
 
 ray.init()
 start = time.time()
