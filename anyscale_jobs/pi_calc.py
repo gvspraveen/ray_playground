@@ -41,7 +41,7 @@ def pi4_task(num_samples, delay=0.0):
     time.sleep(delay)
 
 SAMPLES_PER_ACTOR = 10000
-DELAY_PER_ACTOR = 1
+DELAY_PER_ACTOR = 180
 NUM_ACTORS = 20
 
 ray.init()
