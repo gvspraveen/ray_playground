@@ -37,12 +37,12 @@ def pi4_task(num_samples, delay=0.0):
         y = random.random()
         if x*x + y*y <= 1:
             in_count += 1
+        time.sleep(delay)
     return Fraction(in_count, num_samples)
-    time.sleep(delay)
 
 SAMPLES_PER_ACTOR = 10000
 DELAY_PER_ACTOR = 180
-NUM_ACTORS = 20
+NUM_ACTORS = 10
 
 ray.init()
 start = time.time()
