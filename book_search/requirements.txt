@@ -1,0 +1,6 @@
+sentence-transformers
+langchain==0.0.58
+openai
+streamlit
+streamlit-chat
+faiss-gpu
