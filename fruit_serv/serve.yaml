@@ -1,0 +1,9 @@
+name: fruit-service
+ray_serve_config:
+  import_path: fruit:deployment_graph
+  runtime_env:
+    working_dir: .
+    # in aws anyscale-dev-cloud_dogfood
+    upload_path: s3://tchordia-test-re/runtime-env
+project: aguo-serve
+cloud: anyscale_v2_default_cloud

@@ -1,0 +1,54 @@
+# How to Talk So Little Kids Will Listen
+
+![](https://images-na.ssl-images-amazon.com/images/I/51-rI6SvSaL._SL200_.jpg)
+
+### Metadata
+
+- Author: Joanna Faber and Julie King
+- Full Title: How to Talk So Little Kids Will Listen
+- Category: #books
+
+### Highlights
+
+- When their feelings are acknowledged, people feel relieved: ([Location 182](https://readwise.io/to_kindle?action=open&asin=B01CO348EO&location=182))
+    - **Tags:** #parenting
+- The next time your kid says something negative and inflammatory, follow these steps: 1. Grit your teeth and resist the urge to immediately contradict him! 2. Think about the emotion he is feeling 3. Name the emotion and put it in a sentence ([Location 211](https://readwise.io/to_kindle?action=open&asin=B01CO348EO&location=211))
+    - **Tags:** #parenting
+    - **Note:** Tool #1: Acknowledge the feeling with words
+- Without having their own feelings acknowledged first, children will be deaf to our finest explanations and most passionate entreaties. ([Location 309](https://readwise.io/to_kindle?action=open&asin=B01CO348EO&location=309))
+    - **Tags:** #parenting
+- Children need us to validate their feelings so they can become grown-ups who know who they are and what they feel. We are also laying the groundwork for a person who can respect and not dismiss the needs and feelings of other people. ([Location 325](https://readwise.io/to_kindle?action=open&asin=B01CO348EO&location=325))
+    - **Tags:** #parenting
+- Writing down wishes is a different way to avoid a tantrum, without spoiling your child. Think of it as an opportunity to accept feelings while limiting actions.” ([Location 370](https://readwise.io/to_kindle?action=open&asin=B01CO348EO&location=370))
+    - **Tags:** #parenting
+- You may have noticed that we don’t respond to a child’s distress by asking questions: Are you sad? Did that make you angry? Why are you crying? Even gentle questions can feel like an interrogation when a child is in distress. He may not know why he is upset. He may not be able to express it clearly in words. Often when questioned like this, even adults can feel threatened. We have the feeling we are being asked to justify how we feel and that our explanation may not live up to the asker’s standards. (Oh, is that all it is? You shouldn’t be crying about that!) By making a statement instead of asking a question, we accept the feelings without requiring any justification. You don’t have to figure out the cause of the feelings in order to empathize. You can say, “You seem sad.” “Something upset you.” Or even just, “Something happened.” That kind of phrase invites your child to talk ([Location 514](https://readwise.io/to_kindle?action=open&asin=B01CO348EO&location=514))
+    - **Tags:** #parenting
+- When expressing anger or frustration, use the word I, avoid the word you. ([Location 934](https://readwise.io/to_kindle?action=open&asin=B01CO348EO&location=934))
+    - **Tags:** #parenting
+    - **Note:** express how you are feeling instead of pointing the mistake of the child
+- the punishments we mete out to our children give them a blueprint for how to approach conflict in their lives. We have to ask ourselves if we want them to use these methods on their peers and siblings. ([Location 1127](https://readwise.io/to_kindle?action=open&asin=B01CO348EO&location=1127))
+    - **Tags:** #parenting
+- The first step of problem-solving is to acknowledge your child’s feelings. This is the most important step, and the most frequently skipped! Without acknowledging feelings first, you won’t get far. Your child needs to know that you can see things from his point of view and understand what he’s feeling, or he won’t be open to any of the suggestions that follow. ([Location 1207](https://readwise.io/to_kindle?action=open&asin=B01CO348EO&location=1207))
+    - **Tags:** #parenting, #favorite
+- Rewards have many pitfalls. They don’t address the cause of the problem. They are used to manipulate the other person rather than work with her, which can lead to resentment. They are subject to inflation. And they have a dark side. A reward is offered with an implied threat: If you don’t do what I say, you’ll miss out on something good. ([Location 1472](https://readwise.io/to_kindle?action=open&asin=B01CO348EO&location=1472))
+    - **Tags:** #parenting
+- Step One: Acknowledge your child’s feelings “I can see that you don’t like your hand held in the parking lot. It makes your fingers feel squeezed.” Step Two: Describe the problem “The problem is, I worry about cars hitting children in the parking lot.” Step Three: Ask for ideas “We need some ideas so we can go back to the park and have a good time without people getting mad or scared. What can we do?” Step Four: Decide which ideas you both like “So you like the idea of holding on to my sleeve and leading me to the playground. Let’s circle that one.” Step Five: Try out your solutions ([Location 1619](https://readwise.io/to_kindle?action=open&asin=B01CO348EO&location=1619))
+    - **Tags:** #parenting
+- “We know a lot of kids are naturally suspicious of new tastes and textures, foods with strong or bitter tastes, and even foods touching other foods on their plate. There’s actually a scientific explanation for picky eating. Little babies put everything in their mouths, but around age two they become cautious about new tastes. That caution protects the freely moving toddler from the danger of eating poisonous things. In fact, we’re a species of picky eaters, since historically the pickiest of toddlers survive to reproduce. Picky eating is in our DNA!” ([Location 2528](https://readwise.io/to_kindle?action=open&asin=B01CO348EO&location=2528))
+    - **Tags:** #parenting
+- REMINDER: Morning Madness 1. Be Playful (Shoe talking.) “I don’t want that foot in me. Nooooo!” (Parent talking.) “You’d better get on Luke’s foot right now. You’re making him late!” 2. Offer a Choice “Do you want to walk to the car the regular way or backward?” 3. Put the Child in Charge “Can you set the timer? I need you to let me know when it’s time to go out the door.” 4. Try Problem-Solving “It’s not easy to remember all the things we have to do in the morning. What do you think about making a chart?” 5. Acknowledge Feelings “It isn’t easy to get out of a warm, cozy bed. It’s nice to snuggle for a few more minutes!” ([Location 2784](https://readwise.io/to_kindle?action=open&asin=B01CO348EO&location=2784))
+    - **Tags:** #parenting, #favorite
+- REMINDER: Cleanup 1. Be Playful (Shoes talking.) “Pretty please, put me in the closet with my friends.” “How many minutes will it take to toss all the Legos into the bucket? You can set the timer. Ready . . . set . . . GO!”
+  2. Offer a Choice “Do you want to be in charge of putting away the books or the cars?” 3. Write a Note “Please hang me on the hook. Love, Your Coat.”
+  4. Describe What You See “I see orange peels on the floor.”
+  5. Give Information “Peels belong in the compost.”
+  6. Say It with a Word “Coat!” “Peels!” “Shoes!”
+  7. Describe Progress “You got that whole pile of dirty laundry in the basket! All that’s left to put away are the cars and books.”
+  8. Describe What You See with Appreciation “Wow, look at this big cleanup you did. The floor was covered with dirty laundry and train tracks, and now it’s a pleasure to walk on!” ([Location 3456](https://readwise.io/to_kindle?action=open&asin=B01CO348EO&location=3456))
+    - **Tags:** #parenting
+- REMINDER: Sleep 1. Acknowledge Feelings “Sometimes it isn’t easy to fall asleep. It can be scary to lie in bed in the dark.” 2. Be Playful “I need to smooth out these terrible lumps in your bed!” (Press down on legs and arms of child.) 3. Try Problem-Solving “Let’s see what ideas we can come up with for staying in your bed at night. A special night-light? A picture book by your bed? A recording of songs or stories?” 4. Take Action Without Insult “Mommy and Daddy need to sleep! I’m putting you back in your bed. We’ll play in the morning.” ([Location 4102](https://readwise.io/to_kindle?action=open&asin=B01CO348EO&location=4102))
+    - **Tags:** #favorite, #parenting
+- REMINDER: When Parents Get Angry! A. In the moment, if you must yell, use your tools . . . LOUDLY! 1. Say It in a Word “CAR!!!” 2. Give Information “BROTHERS ARE NOT FOR KICKING!!” 3. Describe How You Feel “I GET VERY UPSET WHEN I SEE A BABY BEING PINCHED!!” 4. Describe What You See “I SEE PEOPLE GETTING HURT!!” 5. Take Action without Insult “I can’t allow sand throwing! WE ARE LEAVING!!” B. When the moment has passed and everyone’s safe, take care of yourself. Do whatever works best for you: run around the block; take deep breaths; take a time-out for yourself (lock yourself in another room); call a friend and vent; email a friend; write in a journal; hug a dog; turn on your favorite music; attend to your own basic needs—sleep and food. . . . C. Reconnect and try problem-solving. “That was no fun. You didn’t like getting yelled at. And I was really mad about being late. What can we do next time?” D. Seek help if you feel the anger is too much. ([Location 4224](https://readwise.io/to_kindle?action=open&asin=B01CO348EO&location=4224))
+    - **Tags:** #parenting
+- REMINDER: Troubleshooting 1. When a child is too upset to cooperate, go back to Acknowledging Feelings “You don’t even want to think about visiting your friend another time. You were looking forward to going today!” • Make sure your tone of voice matches the emotion “That’s so disappointing!” • Try a grunt instead of words “UGH!” “Mmph!” • Put your child’s thoughts into words “Stupid Legos! They should stick together and stay together!” • Tell the story of what happened “You worked for a long time on that spaceship. You used blue bricks for the base, and red bricks for the lights, and it was almost ready to launch! All it needed was the fins on the rockets. . . .” 2. Give your child Time to Recover (and give yourself a break!) “I can see how sad you are. I’ll be in the kitchen making dinner. Come join me when you’re ready.” 3. Help a child climb out of the pit of despair by Acknowledging Feelings, Giving Information, and Offering Choices “Oh no, the skin got ripped! That hurts! Good thing skin knows how to repair itself. It’s getting busy right now growing more skin cells to cover that poor knee and make it as good as new. How many days do you think it will take? What kind of Band-Aid should we cover it with?” 4. Take Action and stick to your values; if you regularly cave in to whining and complaints, the tools won’t work “You wish we could have candy for breakfast! I’m putting it out of sight. The choices are cereal or eggs.” 5. Check on “The Basics” Is your child lacking food or sleep, or feeling overwhelmed? Is your child developmentally ready to do what you’re expecting? ([Location 4409](https://readwise.io/to_kindle?action=open&asin=B01CO348EO&location=4409))
+    - **Tags:** #parenting

@@ -30,9 +30,9 @@ def train_maze_policy_parallel(env, num_episodes=100, num_actors=4, explore=True
     return policy
 
 # Parameters to tune
-maze_dimensions=(5,5)
+maze_dimensions=(3,3)
 env = Environment(maze_dimensions)
-num_actors = 10 # Each actor is unit of parallelization in the implementation
+num_actors = 4 # Each actor is unit of parallelization in the implementation
 episodes_per_actor = 100
 
 # Start training

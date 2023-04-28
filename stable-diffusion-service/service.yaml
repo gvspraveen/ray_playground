@@ -1,0 +1,9 @@
+name: "diffusion-service"
+cluster_env: praveeng-stable-diffusion-env
+  runtime_env:
+    working_dir: .
+    # in aws anyscale-dev-cloud_dogfood
+    upload_path: s3://praveeng-bucket/diffusion-service
+entrypoint: "cd stable-diffusion && serve run --non-blocking app:entrypoint"
+healthcheck_url: "/-/healthz"
+access: "public"
