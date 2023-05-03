@@ -10,6 +10,8 @@ import time
 from langchain.embeddings.base import Embeddings
 from typing import List
 from sentence_transformers import SentenceTransformer
+import os
+
 
 
 # Source : https://github.com/hwchase17/notion-qa/blob/master/ingest.py
@@ -17,15 +19,29 @@ from sentence_transformers import SentenceTransformer
 
 # Here we load in the markdown data.
 ps = list(Path("book_search/").glob("**/*.md"))
+# ps = list(Path("/mnt/user_storage/highlights/").glob("**/*.md"))
 db_shards = 8
+
+# Create Open API key here : https://platform.openai.com/account/api-keys.
+open_api_key = os.getenv('OPEN_API_KEY')
 
 def extract_docs(ps):
     docs = []
     sources = []
     for p in ps:
-        with open(p) as f:
-            docs.append(f.read())
-        sources.append({"source": str(p)})
+        try:
+            with open(p, 'rb') as f:
+                data = f.read()
+                data = data.decode('utf-8', 'ignore')
+                docs.append(data)
+                sources.append({"source": str(p)})
+
+        except UnicodeDecodeError as e:
+            print(f'Error decoding file: {e}')
+        # with open(p) as f:
+            
+        #     docs.append(f.read())
+        # sources.append({"source": str(p)})
 
     return docs, sources
 
@@ -40,7 +56,7 @@ def chunk_docs(docs, sources):
 
 @ray.remote(num_gpus=1)
 def process_shard(shard): 
-    embeddings = OpenAIEmbeddings(openai_api_key="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")
+    embeddings = OpenAIEmbeddings(openai_api_key=open_api_key)
     result = FAISS.from_documents(shard, embeddings)
     return result
 
