@@ -1,6 +1,10 @@
-sentence-transformers
-langchain==0.0.58
+faiss-cpu
+langchain
+mypy-extensions
 openai
-streamlit
-streamlit-chat
-faiss-gpu
+openapi-schema-pydantic
+sentence-transformers
+torch
+typing-inspect
+wandb>=0.15.0
+tiktoken
