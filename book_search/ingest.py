@@ -1,17 +1,12 @@
 from pathlib import Path
 from langchain.text_splitter import CharacterTextSplitter
-import faiss
 from langchain.vectorstores import FAISS
 from langchain.embeddings import OpenAIEmbeddings
-import pickle
 import ray
 import numpy as np
 import time
-from langchain.embeddings.base import Embeddings
-from typing import List
-from sentence_transformers import SentenceTransformer
 import os
-
+from custom_embeddings import open_api_key, FAISS_INDEX_PATH
 
 
 # Source : https://github.com/hwchase17/notion-qa/blob/master/ingest.py
@@ -21,9 +16,6 @@ import os
 ps = list(Path("book_search/").glob("**/*.md"))
 # ps = list(Path("/mnt/user_storage/highlights/").glob("**/*.md"))
 db_shards = 8
-
-# Create Open API key here : https://platform.openai.com/account/api-keys.
-open_api_key = os.getenv('OPEN_API_KEY')
 
 def extract_docs(ps):
     docs = []
@@ -57,35 +49,9 @@ def chunk_docs(docs, sources):
 @ray.remote(num_gpus=1)
 def process_shard(shard): 
     embeddings = OpenAIEmbeddings(openai_api_key=open_api_key)
+    # embeddings = CustomHuggingFaceEmbeddings(default_hf_embedding)
     result = FAISS.from_documents(shard, embeddings)
     return result
-
-class LocalHuggingFaceEmbeddings(Embeddings):
-    def __init__(self, model_id): 
-        # Should use the GPU by default
-        self.model = SentenceTransformer(model_id)
-        
-    def embed_documents(self, texts: List[str]) -> List[List[float]]:
-        """Embed a list of documents using a locally running
-           Hugging Face Sentence Transformer model
-        Args:
-            texts: The list of texts to embed.
-        Returns:
-            List of embeddings, one for each text.
-        """
-        embeddings =self.model.encode(texts)
-        return embeddings
-
-    def embed_query(self, text: str) -> List[float]:
-        """Embed a query using a locally running HF 
-        Sentence trnsformer. 
-        Args:
-            text: The text to embed.
-        Returns:
-            Embeddings for the text.
-        """
-        embedding = self.model.encode(text)
-        return list(map(float, embedding))
 
 def process_docs():
     print(f'Loading chunks into vector store ... using {db_shards} shards') 
@@ -107,6 +73,6 @@ def process_docs():
         db.merge_from(results[i])
     et = time.time() - st
     print(f'Merged in {et} seconds.') 
-
+    db.save_local(FAISS_INDEX_PATH)
 process_docs()
 
