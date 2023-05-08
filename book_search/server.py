@@ -40,7 +40,7 @@ class KnowledgeBase:
             task="text-generation",
             model_kwargs={"temperature": 0.1},
         )
-        self.chain = load_qa_chain(llm=OpenAI(), chain_type="stuff", prompt=PROMPT)
+        self.chain = load_qa_chain(self.llm, chain_type="stuff", prompt=PROMPT)
 
     def ask(self, question):
         near_docs = self.db.similarity_search(question)
