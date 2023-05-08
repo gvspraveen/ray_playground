@@ -9,8 +9,9 @@ import os
 from custom_embeddings import open_api_key, FAISS_INDEX_PATH
 
 
-# Source : https://github.com/hwchase17/notion-qa/blob/master/ingest.py
-# https://docs.google.com/document/d/1hph_cknMborgUsDI55p0mvQKyphqUZmvD8B75UOvweg/edit#
+# Inspiration 
+# https://github.com/hwchase17/notion-qa/blob/master/ingest.py
+# https://www.anyscale.com/blog/building-a-self-hosted-question-answering-service-using-langchain-ray
 
 # Here we load in the markdown data.
 ps = list(Path("book_search/").glob("**/*.md"))
