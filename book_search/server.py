@@ -8,7 +8,7 @@ from langchain.vectorstores import FAISS
 from langchain.prompts import PromptTemplate
 from langchain import HuggingFacePipeline
 from langchain.chains.question_answering import load_qa_chain
-
+from typing import List, Optional, Any
 
 # Inspiration
 # https://python.langchain.com/en/latest/modules/chains/index_examples/vector_db_qa.html
@@ -48,6 +48,6 @@ class KnowledgeBase:
         return result["output_text"]
 
     async def __call__(self, request: Request) -> List[str]:
-        return self.qa(request.query_params["query"])
+        return self.ask(request.query_params["question"])
 
 deployment = KnowledgeBase.bind()

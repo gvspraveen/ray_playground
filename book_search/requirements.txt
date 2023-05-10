@@ -8,3 +8,4 @@ torch
 typing-inspect
 wandb>=0.15.0
 tiktoken
+appengine-python-standard
