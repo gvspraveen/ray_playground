@@ -9,3 +9,4 @@ typing-inspect
 wandb>=0.15.0
 tiktoken
 appengine-python-standard
+SQLAlchemy==1.4.48
