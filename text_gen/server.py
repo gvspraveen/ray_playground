@@ -1,5 +1,4 @@
 from ray import serve
-from starlette.requests import Request
 from typing import List
 from transformers import pipeline
 from fastapi import FastAPI
