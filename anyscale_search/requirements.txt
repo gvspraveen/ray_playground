@@ -1,3 +1,4 @@
 llama_index
-pdf2image
 sentence_transformers
+SQLAlchemy==1.4.48
+html2text
