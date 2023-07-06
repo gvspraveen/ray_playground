@@ -26,7 +26,7 @@ def parse_urls(url_row: Dict[str, str]) -> Dict[str, Document]:
 
 # Step 2: Convert the loaded documents into llama_index Nodes. This will split the documents into chunks.
 from llama_index.node_parser import SimpleNodeParser
-from llama_index.schema import BaseNode as Node
+from llama_index.data_structs import Node
 
 def convert_documents_into_nodes(documents: Dict[str, Document]) -> Dict[str, Node]:
     parser = SimpleNodeParser()

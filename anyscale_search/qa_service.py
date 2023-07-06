@@ -1,14 +1,7 @@
-from typing import List
-
 from llama_index import (
     load_index_from_storage, 
     ServiceContext, 
     StorageContext, 
-)
-from models import (
-    lang_embed_model, 
-    hf_predictor,
-    persist_dir
 )
 
 from ray import serve
@@ -29,6 +22,12 @@ app = FastAPI()
 @serve.ingress(app)
 class QADeployment:
     def __init__(self):
+        from models import (
+            lang_embed_model, 
+            hf_predictor,
+            persist_dir
+        )
+        
         service_context = ServiceContext.from_defaults(llm_predictor=hf_predictor, embed_model=lang_embed_model)
         # Load the vector stores that were created earlier.
         storage_context = StorageContext.from_defaults(persist_dir=persist_dir)
