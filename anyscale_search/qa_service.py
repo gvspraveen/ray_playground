@@ -1,4 +1,3 @@
-from typing import List
 from ray import serve
 from fastapi import FastAPI
 from langchain.vectorstores import FAISS
