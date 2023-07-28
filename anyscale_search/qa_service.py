@@ -1,48 +1,54 @@
-from llama_index import (
-    load_index_from_storage, 
-    ServiceContext, 
-    StorageContext, 
-)
-
 from ray import serve
 from fastapi import FastAPI
-
-# setup prompts - specific to OpenAssistant
-from llama_index.prompts.prompts import SimpleInputPrompt
-
-# Prompt for OpenAssistant.
-# Taken from https://huggingface.co/OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5
-query_wrapper_prompt = SimpleInputPrompt(
-    "<|prompter|>{query_str}<|endoftext|><|assistant|>")
-
+from langchain.vectorstores import FAISS
+from langchain.prompts import PromptTemplate
+from langchain import HuggingFacePipeline
+from langchain.chains.question_answering import load_qa_chain
 
 app = FastAPI()
 
-@serve.deployment(ray_actor_options={"num_gpus": 3})
+template = """
+<|SYSTEM|># StableLM Tuned (Alpha version)
+- You are a helpful, polite, fact-based agent for answering questions about Ray. 
+- Your answers include enough detail for someone to follow through on your suggestions. 
+<|USER|>
+
+Please answer the following question using the context provided. If you don't know the answer, just say that you don't know. Base your answer on the context below. Say "I don't know" if the answer does not appear to be in the context below. 
+
+QUESTION: {question} 
+CONTEXT: 
+{context}
+
+ANSWER: <|ASSISTANT|>
+"""
+PROMPT = PromptTemplate(template=template, input_variables=["context", "question"])
+
+@serve.deployment(ray_actor_options={"num_gpus": 4})
 @serve.ingress(app)
 class QADeployment:
     def __init__(self):
         from models import (
-            lang_embed_model, 
-            hf_predictor,
+            hf_embed_model,
             persist_dir
         )
-        
-        service_context = ServiceContext.from_defaults(llm_predictor=hf_predictor, embed_model=lang_embed_model)
-        # Load the vector stores that were created earlier.
-        storage_context = StorageContext.from_defaults(persist_dir=persist_dir)
-        anyscale_docs_index = load_index_from_storage(storage_context, service_context=service_context)   
-
-        # Define Query engine
-        self.anyscale_docs_index = anyscale_docs_index.as_query_engine(similarity_top_k=5, service_context=service_context)
+        self.db = FAISS.load_local(persist_dir, hf_embed_model)
+        self.llm = self.llm = HuggingFacePipeline.from_model_id(
+            model_id="stabilityai/stablelm-tuned-alpha-3b",
+            task="text-generation",
+            model_kwargs={"temperature": 0.1},
+            pipeline_kwargs={"max_new_tokens": 400},
+        )
+        self.chain = load_qa_chain(self.llm, chain_type="stuff", prompt=PROMPT)        
         
     def __query__(self, question: str):        
-        return self.anyscale_docs_index.query(question)
+        near_docs = self.db.similarity_search(question)
+        print("near_docs to question: " , near_docs)
+        result = self.chain({"input_documents": near_docs, "question": question})
+        return result
     
     @app.post("/question")
-    async def query(self, question: str) -> str:
-        return str(self.__query__(question))
-        
+    async def query(self, question: str):
+        return self.__query__(question)
 
 # Deploy the Ray Serve application.
 deployment = QADeployment.bind()
