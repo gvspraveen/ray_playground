@@ -2,4 +2,5 @@ llama_index==0.6.20
 sentence_transformers
 SQLAlchemy==1.4.48
 html2text
-faiss-cpu 
+faiss-cpu
+openai
