@@ -1,3 +1,4 @@
+from langchain.schema import document
 from ray import serve
 from fastapi import FastAPI
 from langchain.vectorstores import FAISS
@@ -38,16 +39,25 @@ class QADeployment:
         near_docs = self.db.similarity_search(question, k=1)
         query = query_template.format(question=question, context=near_docs)
         print("Final query passed {}".format(query))
+        sources = []
+        for doc in near_docs:
+            sources.append(doc.metadata["source"])
+
         chat_completion = openai.ChatCompletion.create(
             api_base=self.api_base,
             api_key=self.api_key,
-            model="meta-llama/Llama-2-7b-chat-hf",
+            model="meta-llama/Llama-2-13b-chat-hf",
             messages=[{"role": "system", "content": system_content}, 
                     {"role": "user", "content": query}],
             temperature=0.9,
             max_tokens=4000
-         )   
-        return chat_completion
+         )
+        resp = {
+            "choices": chat_completion.choices,
+            "sources": sources
+        }
+
+        return resp
     
     @app.post("/question")
     async def query(self, question: str):
