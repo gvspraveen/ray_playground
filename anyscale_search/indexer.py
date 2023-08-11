@@ -5,7 +5,7 @@ from models import (
 )
 from langchain.document_loaders import WebBaseLoader
 from langchain.docstore.document import Document
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import FAISS
 
 import ray
@@ -22,9 +22,9 @@ def parse_urls(url_row: Dict[str, str]) -> Dict[str, Document]:
     url = url_row["path"]
     loader = WebBaseLoader(url)
     data = loader.load()
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size = 500, chunk_overlap = 0)
+    text_splitter = CharacterTextSplitter(chunk_size=8000, separator="\n")
     all_splits = text_splitter.split_documents(data)
-    return [{"split": split} for split in all_splits]
+    return [{"doc": split} for split in all_splits]
 
 
 if __name__ == "__main__":
@@ -46,7 +46,7 @@ if __name__ == "__main__":
     documents = []
 
     for row in loaded_ds.iter_rows():
-        documents.append(row["split"])
+        documents.append(row["doc"])
     print("Length of rows: ", len(documents))
 
     @ray.remote(num_gpus=1)
@@ -74,8 +74,5 @@ if __name__ == "__main__":
         print(f'Merged in {et} seconds.') 
         db.save_local(persist_dir)
     process_docs()
-
-    # db = FAISS.from_documents(documents, hf_embed_model)
-    # db.save_local(persist_dir)
 
     print("Vector index successfully Saved. Ready for serving.")

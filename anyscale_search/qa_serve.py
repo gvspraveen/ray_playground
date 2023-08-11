@@ -1,7 +1,6 @@
 from ray import serve
 from fastapi import FastAPI
 from langchain.vectorstores import FAISS
-from langchain.chains.question_answering import load_qa_chain
 import openai
 import os
 
@@ -13,7 +12,9 @@ openai.api_key = open_api_key
 openai.api_base = open_api_base
 
 system_content = """
-Please answer the following question using the context provided. If you don't know the answer, just say that you don't know. Your task is to generate answers to question from the given context. 
+Please answer the following question using the context provided. Generate answers to question from the given context. 
+Do not use external sources unless you are highly confident.
+If you don't know the answer, just say that you don't know. 
 """
 
 query_template = """
@@ -35,15 +36,16 @@ class QADeployment:
         
     def __query__(self, question: str):        
         near_docs = self.db.similarity_search(question, k=1)
-        print("near_docs to question: " , near_docs)
-        print("Api base {api_base}, api_key: {api_key}".format(api_base=self.api_base, api_key=self.api_key))
+        query = query_template.format(question=question, context=near_docs)
+        print("Final query passed {}".format(query))
         chat_completion = openai.ChatCompletion.create(
             api_base=self.api_base,
             api_key=self.api_key,
             model="meta-llama/Llama-2-7b-chat-hf",
-            messages=[{"role": "system", "content": "You are a helpful assistant"}, 
-                    {"role": "user", "content": question}],
-            temperature=0.9
+            messages=[{"role": "system", "content": system_content}, 
+                    {"role": "user", "content": query}],
+            temperature=0.9,
+            max_tokens=4000
          )   
         return chat_completion
     
