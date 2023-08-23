@@ -23,8 +23,10 @@ import requests
 # """
 
 err_summary="""
-The Ray agent couldn't be started due to a port conflict.
-Start Ray with a hard-coded agent port using the command `ray start --dashboard-agent-grpc-port [port]`. Make sure the port is not used by other processes.
+The error occurred when importing the 'jax' library, which is required by the TensorFlow Lite API. The version of jaxlib installed on the system is 0.4.6, but the minimum required version is 0.4.7.
+Upgrade jaxlib to version 0.4.7 or higher.
+Terminal fix
+pip install -U jaxlib==0.4.7
 """
 
 response = requests.post(

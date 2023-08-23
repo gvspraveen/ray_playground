@@ -10,27 +10,26 @@ open_api_base = "https://api.endpoints.anyscale.com/v1"
 openai.api_key = open_api_key
 openai.api_base = open_api_base
 
-# Using LLM as text classifier. Here I am using LLama-2 70b model to classify error summary as either Python code issue or Node termination errors or Ray api usage error.
+# Using LLM as text classifier. Here I am using LLama-2 70b model to classify error summary as either Python code issue or missing dependency error or Node termination errors.
 # I used Chain of thought prompting technique: https://www.promptingguide.ai/techniques/cot
 # I also explored more advanced techniques like: Clue And Reasoning Prompting (CARP) technique proposed in paper from Cornell University: https://arxiv.org/abs/2305.08377.
 # But In this case CARP seemed overkill with no additional performance gain.
 
 system_content = """
-You are an error type classifier for error SUMMARY. Classify the ERROR_TYPE of the SUMMARY as one of PYTHON_CODE_ISSUE or NODE_FAILURE or RAY_USAGE_ISSUE
+You are an error type classifier for error SUMMARY. Classify the ERROR_TYPE of the SUMMARY as one of PYTHON_CODE_ISSUE or MISSING_DEPENDENCY or NODE_FAILURE
 
 Examples:
-SUMMARY: The Ray job failed due to a version incompatibility issue. Upgrade the jaxlib version to 0.4.7 or higher. pip install --upgrade jaxlib
-ERROR_TYPE: : Let's think step-by-step. The summary states that Ray job failed due a wrong version of a library. Even though summary refers to Ray, it is clear that this is a version mismatch error in a libray used. So it has nothing do with Ray usage. So ERROR_TYPE is PYTHON_CODE_ISSUE
+SUMMARY: The trial actor was not properly cached. Please ensure that the `reset_config()` method is implemented and returns `True` to enable trainable runner reuse.
+ERROR_TYPE: Let's think step-by-step. Summary does not refer to any failed nodes or termination issues. It is also not talking about a missing import or dependency. Instead summary suggests the code was not correctly implemented. So ERROR_TYPE: PYTHON_CODE_ISSUE
+
+SUMMARY: Your environment does not have 'gputil' installed which is required for GPU system monitoring. pip install gputil
+ERROR_TYPE: Let's think step-by-step. The summary states that a library needed to run the code is not present. Also there is a suggestion to install a library. This is a case of missing dependency and so ERROR_TYPE: MISSING_DEPENDENCY
 
 SUMMARY: This error indicates that the Ray Actor, in this case the PPO reinforcement learning algorithm, has failed unexpectedly. This generally occurs when the node running the actor has failed
-ERROR_TYPE: : Let's think step-by-step. The summary states that a Ray actor has failed. Even though it refers to Ray, it is clear that it failure is due to node failing or terminated and nothing to do with usage of Ray. So ERROR_TYPE is NODE_FAILURE
-
-SUMMARY: The trial actor was not properly cached. Please ensure that the `reset_config()` method is implemented and returns `True` to enable trainable runner reuse.
-ERROR_TYPE: : Let's think step-by-step. Summary does not refer to any failed nodes or termination issues. It suggests a code fix for trainable class which is a concept in ray documentation. So ERROR_TYPE is RAY_USAGE_ISSUE
-
+ERROR_TYPE: Let's think step-by-step. The summary states that a Ray actor has failed. Even though it refers to Ray, it is clear that it failure is due to node failing or terminated and nothing to do with usage of Ray. So ERROR_TYPE: NODE_FAILURE
 
 Do not use external sources unless you are highly confident. If you don't know the answer, just say that you don't know.
-If you see multiple summaries in the given input, then just return multiple choices with each choice having summary and error_type you predicted.
+If you see multiple SUMMARY in the given input, then just return multiple choices with each choice having summary and error_type you predicted.
 """
 
 query_template = """
