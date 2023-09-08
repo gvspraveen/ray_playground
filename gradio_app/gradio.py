@@ -135,3 +135,5 @@ class MyGradioServer(GradioIngress):
 app1 = TextGenerationModel.bind(model_7b)
 app2 = TextGenerationModel.bind(model_13b)
 app = MyGradioServer.bind(app1, app2)
+
+# serve run demo:app
