@@ -16,6 +16,7 @@ Object should contain the following properties:
 
 1. relevantError: This SHOULD be up to 10 words max, a verbatim of the log line that is relevant to the error. If the error has a python exception name, then ALWAYS retain that exception name in output.
 2. message: Explain in details why the error might have happened.
+3. suggestedFix: This should be valid terminal command or code that can be run to fix the error.
 """
 
 sample_log = """
@@ -98,7 +99,7 @@ class MyGradioServer(GradioIngress):
                 gr.Textbox(value=api_key_env, label="API KEY"),
                 gr.Textbox(value=sample_log, label="Input prompt")
                 ],
-            outputs=[gr.Textbox(label="Base 7b output"), gr.Textbox(label="Finetuned Model output")]
+            outputs=[gr.Textbox(label="Llama 7b output"), gr.Textbox(label="Llama 13b output")]
             )
         )
 
@@ -106,12 +107,10 @@ class MyGradioServer(GradioIngress):
         refs = await asyncio.gather(self._d1.remote(api_base, api_key, text), self._d2.remote(api_base, api_key, text))
         [res1, res2] = ray.get(refs)
         return (
-            f"[Generated text version 1]\n{res1}\n\n",
-            f"[Generated text version 1]\n{res2}\n\n"
+            f"{res1}\n\n",
+            f"{res2}\n\n"
         )
 
 app1 = TextGenerationModel.bind(model_7b)
 app2 = TextGenerationModel.bind(model_13b)
 app = MyGradioServer.bind(app1, app2)
-
-# serve run demo:app
